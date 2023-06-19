@@ -31,3 +31,12 @@ async function getPokemon(){
 
 getPokemon()
 
+async function createNotionPage(){
+  
+  for (let pokemon of pokeArray){
+    
+  }
+  
+  
+}
+
