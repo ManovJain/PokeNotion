@@ -22,11 +22,14 @@ async function getPokemon(){
         }
         
         pokeArray.push(pokeData)
-        console.log(pokeData)
+        console.log(`Fetching ${pokeData.name} from PokeAPI.` )
   })
   .catch((error) => {
     console.log(error)
   })
+  
+  
+  createNotionPage()
 }
 
 getPokemon()
@@ -35,6 +38,8 @@ async function createNotionPage(){
   
   for (let pokemon of pokeArray){
     
+    
+    console.log('sending data to notion')
     const response = await notion.pages.create({
       "parent": {
         "type": "database_id",
@@ -43,12 +48,29 @@ async function createNotionPage(){
       "properties": {
         "Name": {
           "title": [
-            "type": text,
-            ""
+            {
+              "type": "text",
+              "text": {
+                "content": pokemon.name
+              }
+            },
           ]
-        }
+        },
+        "No": {
+              "number": pokemon.number
+            },
+        "HP": { "number": pokemon.hp },
+        "Attack": { "number": pokemon.attack },
+        "Defense": { "number": pokemon.defense },
+        "Sp. Attack": { "number": pokemon['special-attack'] },
+        "Sp. Defense": { "number": pokemon['special-defense'] },
+        "Speed": { "number": pokemon.speed },
+        "Height": { "number": pokemon.height },
+        "Weight": { "number": pokemon.weight },
       }
     })
+    
+    console.log(response)
     
     
   }
