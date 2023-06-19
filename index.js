@@ -21,16 +21,24 @@ async function getPokemon(){
         typesArray.push(typeObj)
       }
       
-      const processedName =
-            poke.data.species.name.split(/-/).map((name) => {
-              return name[0].toUpperCase + name.substring(1);
-            }).join(" ")
-            .replace(/^Mr M/, "Mr. M")
-      
-      console.log(processedName)
+      const processedName = poke.data.species.name.split(/-/).map((name) => {
+        return name[0].toUpperCase() + name.substring(1);
+        }).join(" ")
+        .replace(/^Mr M/,"Mr. M")
+        .replace(/^Mime Jr/,"Mime Jr.")
+        .replace(/^Mr R/,"Mr. R")
+        .replace(/mo O/,"mo-o")
+        .replace(/Porygon Z/,"Porygon-Z")
+        .replace(/Type Null/, "Type: Null")
+        .replace(/Ho Oh/,"Ho-Oh")
+        .replace(/Nidoran F/,"Nidoran♀")
+        .replace(/Nidoran M/,"Nidoran♂")
+        .replace(/Flabebe/,"Flabébé")
       
       const bulbURL = 
-            `https://bulbapedia.bulbagarden.net/wiki/${processedName}_(Pokémon)`
+            `https://bulbapedia.bulbagarden.net/wiki/${processedName.replace(" ", "_")}_(Pokémon)`
+      
+      console.log(bulbURL)
       
       const sprite = (!poke.data.sprites.front_default) ?   
             poke.data.sprites.other['official-artwork'].front_default :
@@ -38,7 +46,7 @@ async function getPokemon(){
       
       
       const pokeData = {
-          "name" : poke.data.species.name,
+          "name" : processedName,
           "number": poke.data.id,
           "types": typesArray,
           "hp": poke.data.stats[0].base_stat,
