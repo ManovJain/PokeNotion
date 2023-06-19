@@ -59,7 +59,7 @@ async function getPokemon(){
           "speed": poke.data.stats[5].base_stat,
           "sprite": sprite,
           "artwork": poke.data.sprites.other['official-artwork'].front_default,
-          // "bulbURL": bulbURL,
+          "bulbURL": bulbURL,
         }
         
         pokeArray.push(pokeData)
@@ -87,6 +87,14 @@ async function createNotionPage(){
         "type": "database_id",
         "database_id": process.env.NOTION_DATABASE_ID
       },
+      "cover": {
+        "type": "external",
+        "url": pokemon.artwork
+      },
+      "icon": {
+        "type": "external",
+        "url": pokemon.sprite
+      },
       "properties": {
         "Name": {
           "title": [
@@ -101,6 +109,7 @@ async function createNotionPage(){
         "No": {
               "number": pokemon.number
             },
+        "Type": { "multi_select": pokemon.types},
         "HP": { "number": pokemon.hp },
         "Attack": { "number": pokemon.attack },
         "Defense": { "number": pokemon.defense },
@@ -109,6 +118,7 @@ async function createNotionPage(){
         "Speed": { "number": pokemon.speed },
         "Height": { "number": pokemon.height },
         "Weight": { "number": pokemon.weight },
+        "Sprite": {}
       }
     })
     
