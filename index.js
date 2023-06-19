@@ -4,6 +4,7 @@ const { Client } = require('@notionhq/client')
 const notion = new Client({auth: process.env.NOTION_KEY})
 const pokeArray = []
 
+
 async function getPokemon(){
   
   for (let i = 1; i <= 10; i++){
@@ -21,6 +22,8 @@ async function getPokemon(){
           "special-attack": poke.data.stats[3].base_stat,
           "special-defense": poke.data.stats[4].base_stat,
           "speed": poke.data.stats[5].base_stat,
+          "sprite": poke.data.sprites.front_default,
+          "artwork": poke.data.sprites.other['official-artwork'].front_default
         }
         
         pokeArray.push(pokeData)
@@ -29,14 +32,13 @@ async function getPokemon(){
   .catch((error) => {
     console.log(error)
   })
-  
-  
-  createNotionPage()
+    
   }
-  
+  createNotionPage()
 }
 
 getPokemon()
+
 
 async function createNotionPage(){
   
@@ -74,11 +76,7 @@ async function createNotionPage(){
       }
     })
     
-    console.log(response)
-    
-    
+    console.log(response) 
   }
-  
-  
 }
 
