@@ -7,7 +7,7 @@ const pokeArray = []
 
 async function getPokemon(){
   
-  for (let i = 1; i <= 10; i++){
+  for (let i = 112; i <= 122; i++){
     await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then((poke) => {
          
@@ -22,15 +22,17 @@ async function getPokemon(){
       }
       
       const processedName =
-            poke.data.species.name.split(/-/).map((name) => {
-              return name[0].toUpperCase
-            })
+            poke.data.species.name.split(/-/).map((name) 
+            //                                       => {
+            //   return name[0].toUpperCase
+            // })
       
+      console.log(processedName)
       
       const bulbURL = 
             `https://bulbapedia.bulbagarden.net/wiki/${processedName}_(Pokémon)`
       
-      const sprite = (!poke.sprites.front_default) ?   
+      const sprite = (!poke.data.sprites.front_default) ?   
             poke.data.sprites.other['official-artwork'].front_default :
             poke.data.sprites.front_default
       
@@ -60,7 +62,7 @@ async function getPokemon(){
   })
     
   }
-  createNotionPage()
+  //createNotionPage()
 }
 
 getPokemon()
