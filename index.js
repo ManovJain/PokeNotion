@@ -38,9 +38,7 @@ async function getPokemon(){
       const bulbURL = 
             `https://bulbapedia.bulbagarden.net/wiki/${processedName.replace(" ", "_")}_(Pokémon)`
       
-      const sprite = (!poke.data.sprites.front_default) ?   
-            poke.data.sprites.other['official-artwork'].front_default :
-            poke.data.sprites.front_default
+      const sprite = (!poke.data.sprites.front_default) ? poke.data.sprites.other['official-artwork'].front_default : poke.data.sprites.front_default
       
       
       const pokeData = {
@@ -87,11 +85,15 @@ async function createNotionPage(){
       },
       "cover": {
         "type": "external",
-        "url": pokemon.artwork
+        "external": {
+          "url": pokemon.artwork
+        }
       },
       "icon": {
         "type": "external",
-        "url": pokemon.sprite
+        "external": {
+         "url": pokemon.sprite 
+        }
       },
       "properties": {
         "Name": {
