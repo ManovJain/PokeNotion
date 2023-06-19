@@ -21,8 +21,14 @@ async function getPokemon(){
         typesArray.push(typeObj)
       }
       
+      const processedName =
+            poke.data.species.name.split(/-/).map((name) => {
+              return name[0].toUpperCase
+            })
+      
+      
       const bulbURL = 
-            `https://bulbapedia.bulbagarden.net/wiki/${processedName}_(Pokemon)`
+            `https://bulbapedia.bulbagarden.net/wiki/${processedName}_(Pokémon)`
       
       const sprite = (!poke.sprites.front_default) ?   
             poke.data.sprites.other['official-artwork'].front_default :
