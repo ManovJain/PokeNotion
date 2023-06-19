@@ -42,7 +42,10 @@ async function createNotionPage(){
       },
       "properties": {
         "Name": {
-          
+          "title": [
+            "type": text,
+            ""
+          ]
         }
       }
     })
