@@ -7,7 +7,7 @@ const pokeArray = []
 
 async function getPokemon(){
   
-  for (let i = 112; i <= 122; i++){
+  for (let i = 120; i <= 130; i++){
     await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then((poke) => {
          
@@ -22,10 +22,10 @@ async function getPokemon(){
       }
       
       const processedName =
-            poke.data.species.name.split(/-/).map((name) 
-            //                                       => {
-            //   return name[0].toUpperCase
-            // })
+            poke.data.species.name.split(/-/).map((name) => {
+              return name[0].toUpperCase + name.substring(1);
+            }).join(" ")
+            .replace(/^Mr M/, "Mr. M")
       
       console.log(processedName)
       
