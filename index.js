@@ -72,16 +72,15 @@ async function getPokemon(){
     const flavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.number}`)
       .then((flavor) => {
         
-        const flavorText = flavor.data.flavor_text_entries.find(({language: { name }}) => name === "en").flavor_text.replace(/\n|\r|\f/g, " ")
-        
-        console.log(flavorText)
-        
+        pokemon['flavor-text'] = flavor.data.flavor_text_entries.find(({language: { name }}) => name === "en").flavor_text.replace(/\n|\r|\f/g, " ")
+        pokemon.category = flavor.data.genera.find(({language: { name }}) => name === "en").genus
+        pokemon.generation = flavor.data.generation.name.split(/-/).pop().toUpperCase()
       })
     
   }
   
   
-  // createNotionPage()
+  createNotionPage()
 }
 
 getPokemon()
@@ -125,6 +124,17 @@ async function createNotionPage(){
               "number": pokemon.number
             },
         "Type": { "multi_select": pokemon.types},
+                "Sprite": {
+          "files": [
+            {
+              "type": "external",
+              "name": "Pokemon Sprite",
+              "external": {
+                "url": pokemon.sprite
+              }
+            }
+          ]
+        },
         "HP": { "number": pokemon.hp },
         "Attack": { "number": pokemon.attack },
         "Defense": { "number": pokemon.defense },
