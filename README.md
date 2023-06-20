@@ -1,6 +1,6 @@
-# PokeNotion!
+# PokéNotion!
 
-I used this project to learn about the Notion API. I also used the PokeAPI (https://pokeapi.co/).
+I used this project to learn about the Notion API. I also used the PokéAPI (https://pokeapi.co/).
 
 This code was originally written by Thomas Frank. Their tutorial video can be found here: https://youtu.be/ec5m6t77eYM
 
