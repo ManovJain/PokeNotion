@@ -66,6 +66,19 @@ async function getPokemon(){
   })
     
   }
+  
+  for (let pokemon of pokeArray){
+    
+    const flavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.number}`)
+      .then((flavor) => {
+        
+        console.log()
+        
+      })
+    
+  }
+  
+  
   createNotionPage()
 }
 
