@@ -5,7 +5,7 @@ const notion = new Client({ auth: process.env.NOTION_KEY });
 const pokeArray = [];
 
 async function getPokemon() {
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 26; i <= 500; i++) {
     await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${i}`)
       .then((poke) => {
@@ -162,6 +162,20 @@ async function createNotionPage() {
         Weight: { number: pokemon.weight },
       },
       children: [
+        {
+          "object": "block",
+          "type": "quote",
+          "quote": {
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": pokemon['flavor-text']
+                }
+              }
+            ]
+          }
+        },
         {
           "object": "block",
           "type": "paragraph",
