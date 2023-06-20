@@ -1,4 +1,4 @@
-# Hello Node!
+# PokeNotion!
 
 I used this project to learn about the Notion API. I also used the PokeAPI (https://pokeapi.co/).
 
